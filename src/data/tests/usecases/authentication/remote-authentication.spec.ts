@@ -1,5 +1,5 @@
-import { HttpPostClientSpy } from './../../tests/mocks/mock-http-client'
-import { RemoteAuthentication } from '../../tests/usecases/remote-authentication'
+import { RemoteAuthentication } from '../../../usecases/authentication/remote-authentication'
+import { HttpPostClientSpy } from '../../mocks/mock-http-client'
 
 import faker from 'faker'
 
