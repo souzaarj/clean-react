@@ -1,4 +1,3 @@
-import { AccountModel } from '@/domain/models/account-models'
 export interface Authentication {
   auth: (params: Authentication.Params) => Promise<Authentication.Result>
 }
@@ -9,5 +8,5 @@ export namespace Authentication {
     password: string
   }
 
-  export type Result = AccountModel
+  export type Result = Promise<void>
 }
