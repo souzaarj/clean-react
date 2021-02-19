@@ -1,13 +1,13 @@
 import { HttpStatusCode, HttpPostClient } from '@/data/protocols/http'
 
-export class HttpPostClientSpy implements HttpPostClient {
+export class HttpPostClientSpy<T, R> implements HttpPostClient<T, R> {
   url?: string
-  body?: object
-  result: HttpPostClient.Result= {
+  body?: T
+  result: HttpPostClient.Result<R>= {
     statusCode: HttpStatusCode.ok
   }
 
-  async post (params: HttpPostClient.Params): Promise<HttpPostClient.Result> {
+  async post (params: HttpPostClient.Params<T>): Promise<HttpPostClient.Result<R>> {
     this.url = params.url
     this.body = params.body
     return this.result
