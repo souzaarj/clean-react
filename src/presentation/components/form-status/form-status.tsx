@@ -7,7 +7,7 @@ const FormStatus: React.FunctionComponent = () => {
   const { state } = useContext(Context)
   const { isLoading, mainError } = state
   return (
-    <div data-testId="error-wrap" className={Styles.errorWrap}>
+    <div data-testid="error-wrap" className={Styles.errorWrap}>
       { isLoading && <Spinner className={Styles.spinner} /> }
       { mainError && <span className={Styles.error}>{mainError}</span> }
      </div>
