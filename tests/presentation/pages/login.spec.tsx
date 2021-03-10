@@ -25,15 +25,18 @@ describe('Name of the group', () => {
 
   test('should start with initial state', () => {
     const { sut, validationStub } = makeSut()
-    const errorWrap = sut.getByTestId('error-wrap')
-    const submitButton = sut.getByTestId('submit') as HTMLButtonElement
-    const emailStatus = sut.getByTestId('email-status')
-    const passwordStatus = sut.getByTestId('password-status')
 
+    const errorWrap = sut.getByTestId('error-wrap')
     expect(errorWrap.childElementCount).toBe(0)
+
+    const submitButton = sut.getByTestId('submit') as HTMLButtonElement
     expect(submitButton.disabled).toBeTruthy()
+
+    const emailStatus = sut.getByTestId('email-status')
     expect(emailStatus.title).toBe(validationStub.errorMessage)
     expect(emailStatus.textContent).toBe('🔴')
+
+    const passwordStatus = sut.getByTestId('password-status')
     expect(passwordStatus.title).toBe(validationStub.errorMessage)
     expect(passwordStatus.textContent).toBe('🔴')
   })
@@ -77,5 +80,19 @@ describe('Name of the group', () => {
 
     expect(passwordStatus.title).toBe('Tudo certo!')
     expect(passwordStatus.textContent).toBe('🟢')
+  })
+
+  test('should enable submit button if form is valid', () => {
+    const { sut, validationStub } = makeSut()
+    validationStub.errorMessage = ''
+
+    const passwordInput = sut.getByTestId('password')
+    fireEvent.input(passwordInput, { target: { value: faker.internet.password() } })
+
+    const emailInput = sut.getByTestId('email')
+    fireEvent.input(emailInput, { target: { value: faker.internet.email() } })
+
+    const submitButton = sut.getByTestId('submit') as HTMLButtonElement
+    expect(submitButton.disabled).toBeFalsy()
   })
 })
