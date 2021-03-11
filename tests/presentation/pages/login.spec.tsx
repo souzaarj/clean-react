@@ -130,4 +130,15 @@ describe('Name of the group', () => {
       password
     })
   })
+
+  test('should calls Authentication with correct values', () => {
+    const { sut, authenticationSpy } = makeSut()
+    const email = faker.internet.email()
+    const password = faker.internet.password()
+
+    simulateValidSubmit(sut, email, password)
+    simulateValidSubmit(sut, email, password)
+
+    expect(authenticationSpy.callsCount).toBe(1)
+  })
 })
